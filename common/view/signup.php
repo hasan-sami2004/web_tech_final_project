@@ -1,23 +1,20 @@
 <?php
 session_start();
 
-if ($_SESSION["isLoggedIn"] ?? false) {
-    header("Location: dashboard.php");
-    exit;
-}
-
-$emailErr = $_SESSION["emailErr"] ?? "";
+$emailErr    = $_SESSION["emailErr"] ?? "";
 $passwordErr = $_SESSION["passwordErr"] ?? "";
-$signUpErr = $_SESSION["signUpErr"] ?? "";
-$signupMsg = $_SESSION["signupMsg"] ?? "";
-$previousValues = $_SESSION["previousValues"] ?? [];
+$roleErr     = $_SESSION["roleErr"] ?? "";
+$signUpErr   = $_SESSION["signUpErr"] ?? "";
+$signupMsg   = $_SESSION["signupMsg"] ?? "";
+$previous    = $_SESSION["previousValues"] ?? [];
 
 unset(
     $_SESSION["emailErr"],
     $_SESSION["passwordErr"],
+    $_SESSION["roleErr"],
     $_SESSION["signUpErr"],
-    $_SESSION["previousValues"],
-    $_SESSION["signupMsg"]
+    $_SESSION["signupMsg"],
+    $_SESSION["previousValues"]
 );
 ?>
 
@@ -35,23 +32,36 @@ unset(
 <h2>Signup</h2>
 
 <?php if ($signupMsg): ?>
-    <div class="success"><?php echo $signupMsg; ?></div>
+    <div class="success"><?= $signupMsg ?></div>
 <?php endif; ?>
 
 <?php if ($signUpErr): ?>
-    <div class="error"><?php echo $signUpErr; ?></div>
+    <div class="error"><?= $signUpErr ?></div>
 <?php endif; ?>
 
 <form method="post" action="../Controller/handleSignupValidation.php">
 
     <label>Email</label><br>
     <input type="text" name="email"
-           value="<?php echo htmlspecialchars($previousValues['email'] ?? ''); ?>">
-    <div class="error"><?php echo $emailErr; ?></div><br>
+           value="<?= htmlspecialchars($previous["email"] ?? "") ?>">
+    <div class="error"><?= $emailErr ?></div><br>
 
     <label>Password</label><br>
     <input type="password" name="password">
-    <div class="error"><?php echo $passwordErr; ?></div><br>
+    <div class="error"><?= $passwordErr ?></div><br>
+
+    <label>Role</label><br>
+    <select name="role">
+        <option value="">-- Select Role --</option>
+        <?php
+        $roles = ["Reader", "Buyer", "Seller", "Admin"];
+        foreach ($roles as $r) {
+            $selected = (($previous["role"] ?? "") === $r) ? "selected" : "";
+            echo "<option value='$r' $selected>$r</option>";
+        }
+        ?>
+    </select>
+    <div class="error"><?= $roleErr ?></div><br>
 
     <button type="submit">Sign Up</button>
 </form>
