@@ -6,7 +6,7 @@ if (!isset($_SESSION["isLoggedIn"]) || !isset($_SESSION["role"]) || $_SESSION["r
     exit;
 }
 
-require_once dirname(__DIR__) . '/model/DatabaseConnection.php';
+require_once '../../common/model/DatabaseConnection.php';
 
 $id = $_GET["id"] ?? 0;
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if($_SESSION['role']!=="Admin") exit;
-require_once dirname(__DIR__).'/model/DatabaseConnection.php';
+require_once '../../common/model/DatabaseConnection.php';
 $id=$_GET['id']??0;
 $db=new DatabaseConnection();
 $conn=$db->openConnection();

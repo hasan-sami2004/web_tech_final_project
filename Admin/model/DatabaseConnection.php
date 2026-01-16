@@ -1,4 +1,6 @@
+
 <?php
+/*
 class DatabaseConnection {
     public function openConnection() {
         $conn = new mysqli("localhost", "root", "", "librarymanagementsystem");
@@ -8,3 +10,4 @@ class DatabaseConnection {
         return $conn;
     }
 }
+*/

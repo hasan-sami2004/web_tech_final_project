@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once dirname(__DIR__).'/model/DatabaseConnection.php';
+require_once '../../common/model/DatabaseConnection.php';
 
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
