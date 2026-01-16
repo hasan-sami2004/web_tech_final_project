@@ -1,72 +1,45 @@
 <?php
 session_start();
-
-$emailErr    = $_SESSION["emailErr"] ?? "";
-$passwordErr = $_SESSION["passwordErr"] ?? "";
-$roleErr     = $_SESSION["roleErr"] ?? "";
-$signUpErr   = $_SESSION["signUpErr"] ?? "";
-$signupMsg   = $_SESSION["signupMsg"] ?? "";
-$previous    = $_SESSION["previousValues"] ?? [];
-
-unset(
-    $_SESSION["emailErr"],
-    $_SESSION["passwordErr"],
-    $_SESSION["roleErr"],
-    $_SESSION["signUpErr"],
-    $_SESSION["signupMsg"],
-    $_SESSION["previousValues"]
-);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Signup</title>
-    <style>
-        .error { color: red; }
-        .success { color: green; }
-    </style>
+<title>Signup</title>
+<link rel="stylesheet" href="../style.css">
 </head>
+
 <body>
 
-<h2>Signup</h2>
+<nav class="top-nav">
+  <div class="logo">📚 <b>WEBTECH LIBRARY</b></div>
+</nav>
 
-<?php if ($signupMsg): ?>
-    <div class="success"><?= $signupMsg ?></div>
-<?php endif; ?>
+<div class="login-wrapper">
 
-<?php if ($signUpErr): ?>
-    <div class="error"><?= $signUpErr ?></div>
-<?php endif; ?>
+  <div class="login-box">
 
-<form method="post" action="../Controller/handleSignupValidation.php">
+    <h2>Create Account</h2>
 
-    <label>Email</label><br>
-    <input type="text" name="email"
-           value="<?= htmlspecialchars($previous["email"] ?? "") ?>">
-    <div class="error"><?= $emailErr ?></div><br>
+    <form action="../controller/handleSignupValidation.php" method="post">
 
-    <label>Password</label><br>
-    <input type="password" name="password">
-    <div class="error"><?= $passwordErr ?></div><br>
+      <input type="text" name="email" placeholder="Email" required>
 
-    <label>Role</label><br>
-    <select name="role">
-        <option value="">-- Select Role --</option>
-        <?php
-        $roles = ["Reader", "Buyer", "Seller", "Admin"];
-        foreach ($roles as $r) {
-            $selected = (($previous["role"] ?? "") === $r) ? "selected" : "";
-            echo "<option value='$r' $selected>$r</option>";
-        }
-        ?>
-    </select>
-    <div class="error"><?= $roleErr ?></div><br>
+      <input type="password" name="password" placeholder="Password" required>
 
-    <button type="submit">Sign Up</button>
-</form>
+      <select name="role" required>
+        <option value="Reader">Reader</option>
+        <option value="Seller">Seller</option>
+        <option value="Admin">Admin</option>
+      </select>
 
-<p>Already have an account? <a href="login.php">Login</a></p>
+      <button type="submit">Sign Up</button>
+
+    </form>
+
+  </div>
+
+</div>
 
 </body>
 </html>

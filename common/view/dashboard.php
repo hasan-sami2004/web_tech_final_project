@@ -1,29 +1,49 @@
 <?php
 session_start();
 
-if (!($_SESSION["isLoggedIn"] ?? false)) {
-    header("Location: login.php");
-    exit;
-}
-
-$email = $_SESSION["email"] ?? "User";
+$error = $_SESSION["loginErr"] ?? "";
+unset($_SESSION["loginErr"]);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard</title>
+<title>WebTech Library</title>
+<link rel="stylesheet" href="../style.css">
 </head>
+
 <body>
 
-<h2>Dashboard</h2>
-<p>Welcome, <?php echo $email; ?></p>
+<nav class="top-nav">
+  <div class="logo">📚 <b>WEBTECH LIBRARY</b></div>
+  <div class="nav-links">
+    <a href="signup.php" class="nav-btn dark">Sign Up</a>
+  </div>
+</nav>
 
-<ul>
-    <li><a href="#">Profile</a></li>
-    <li><a href="#">Manage Users</a></li>
-    <li><a href="../Controller/logout.php">Logout</a></li>
-</ul>
+<div class="login-wrapper">
+
+  <div class="login-box">
+
+    <h2>Login</h2>
+
+    <?php if($error): ?>
+      <p style="color:red;"><?php echo $error; ?></p>
+    <?php endif; ?>
+
+    <form action="../controller/handleLoginValidation.php" method="post">
+
+      <input type="text" name="email" placeholder="Email" required>
+
+      <input type="password" name="password" placeholder="Password" required>
+
+      <button type="submit">Login</button>
+
+    </form>
+
+  </div>
+
+</div>
 
 </body>
 </html>
