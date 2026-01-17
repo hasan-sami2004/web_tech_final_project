@@ -5,6 +5,10 @@ require_once '../../common/model/DatabaseConnection.php';
 
 $email = $_POST["email"] ?? "";
 
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("Location: ../view/signup.php");
+    exit;
+}
 
 $password = $_POST["password"] ?? "";
 $role = $_POST["role"] ?? "Reader";

@@ -5,6 +5,11 @@ require_once '../../common/model/DatabaseConnection.php';
 
 $email = $_REQUEST["email"] ?? "";
 
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $_SESSION["loginErr"] = "Invalid Email Format";
+    header("Location: ../view/dashboard.php");
+    exit;
+}
 
 $password = $_REQUEST["password"] ?? "";
 
