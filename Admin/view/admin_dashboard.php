@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-/* SECURITY CHECK */
 
 if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["role"] !== "Admin") {
     header("Location: ../../common/view/dashboard.php");
@@ -49,10 +48,11 @@ $email = $_SESSION["email"];
     <p>Add new books</p>
   </div>
 
-  <div class="admin-card">
+  <a href="user_list.php" class="admin-card">
     <h3>👥 View Users</h3>
     <p>See all registered users</p>
-  </div>
+  </a>
+
 
   <div class="admin-card">
     <h3>📚 Book List</h3>
