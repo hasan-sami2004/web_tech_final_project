@@ -3,8 +3,8 @@ session_start();
 
 require_once '../../common/model/DatabaseConnection.php';
 
-$email = $_POST["email"] ?? "";
-$password = $_POST["password"] ?? "";
+$email = $_REQUEST["email"] ?? "";
+$password = $_REQUEST["password"] ?? "";
 
 if (!$email || !$password) {
     $_SESSION["loginErr"] = "All fields required";

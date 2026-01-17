@@ -31,15 +31,16 @@ unset($_SESSION["loginErr"]);
       <p style="color:red;"><?php echo $error; ?></p>
     <?php endif; ?>
 
-    <form action="../controller/handleLoginValidation.php" method="post">
+    <form action="../controller/handleLoginValidation.php" method="post" onsubmit="return validateLogin()">
 
-  <input type="text" name="email" placeholder="Email" required>
+  <input type="text" id="loginEmail" name="email" placeholder="Email" required>
 
-  <input type="password" name="password" placeholder="Password" required>
+  <input type="password" id="loginPassword" name="password" placeholder="Password" required>
 
   <button type="submit">Login</button>
 
-</form>
+  </form>
+
 
 <p class="signup-text">
   Don't have an account?
@@ -49,6 +50,28 @@ unset($_SESSION["loginErr"]);
   </div>
 
 </div>
+
+<script>
+
+function validateLogin(){
+
+  let email = document.getElementById("loginEmail").value.trim();
+  let password = document.getElementById("loginPassword").value.trim();
+
+  if(email === ""){
+    alert("Email is required");
+    return false;
+  }
+
+  if(password === ""){
+    alert("Password is required");
+    return false;
+  }
+
+  return true;
+}
+
+</script>
 
 </body>
 </html>
