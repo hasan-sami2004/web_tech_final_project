@@ -15,8 +15,6 @@ if (!$email || !$password) {
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
 
-/* DB TABLE: user | COLUMN: user */
-
 $sql = "SELECT * FROM user WHERE user = ?";
 $stmt = $conn->prepare($sql);
 
@@ -39,14 +37,11 @@ if ($row['approval_status'] == -1) {
     exit;
 }
 
-
 if (!password_verify($password, $row["password"])) {
     $_SESSION["loginErr"] = "Invalid Email or Password";
     header("Location: ../view/dashboard.php");
     exit;
 }
-
-
 
 if ($row["role"] == "Admin" && $row["approval_status"] == 0) {
     $_SESSION["loginErr"] = "Admin Approval Pending";
@@ -54,12 +49,9 @@ if ($row["role"] == "Admin" && $row["approval_status"] == 0) {
     exit;
 }
 
-
 $_SESSION["isLoggedIn"] = true;
 $_SESSION["email"] = $row["user"];
 $_SESSION["role"] = $row["role"];
-
-
 
 if ($row["role"] == "Admin") {
     header("Location: ../../Admin/view/admin_dashboard.php");

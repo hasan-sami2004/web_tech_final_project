@@ -23,8 +23,7 @@ if ($role == "Admin") {
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
 
-$sql = "INSERT INTO user (user, password, role, approval_status)
-        VALUES (?, ?, ?, ?)";
+$sql = "INSERT INTO user (user, password, role, approval_status) VALUES (?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssi", $email, $hash, $role, $approval);
