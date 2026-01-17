@@ -20,39 +20,53 @@ $result = $conn->query(
 <html>
 <head>
 <title>Admin Approval</title>
+<link rel="stylesheet" href="../../common/style.css">
 </head>
 
 <body>
 
+<div class="page-bg">
+
 <h2>Pending Admin Requests</h2>
 
 <table border="1" cellpadding="10">
+
 <tr>
-    <th>ID</th>
-    <th>Email</th>
-    <th>Action</th>
+  <th>ID</th>
+  <th>Email</th>
+  <th>Action</th>
 </tr>
 
 <?php while($row = $result->fetch_assoc()): ?>
 
 <tr>
-    <td><?php echo $row['user_id']; ?></td>
-    <td><?php echo $row['user']; ?></td>
+<td><?php echo $row['user_id']; ?></td>
+<td><?php echo $row['user']; ?></td>
+<td>
 
-    <td>
-      <a href="../controller/approveUser.php?id=<?php echo $row['user_id']; ?>">
-        Approve
-      </a>
-    </td>
+<a href="../controller/approveUser.php?id=<?php echo $row['user_id']; ?>">
+  ✅ Approve
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="../controller/rejectUser.php?id=<?php echo $row['user_id']; ?>"
+   onclick="return confirm('Are you sure you want to reject this admin?')">
+  ❌ Reject
+</a>
+
+</td>
+
+Approve
+</a>
+</td>
 </tr>
 
 <?php endwhile; ?>
 
 </table>
 
-<br>
-
-<a href="admindashboard.php">Back to Dashboard</a>
+</div>
 
 </body>
 </html>

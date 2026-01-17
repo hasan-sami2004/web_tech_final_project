@@ -20,7 +20,7 @@ $email = $_SESSION["email"];
 
 <body>
 
-<!-- NAVBAR -->
+<div class="page-bg">
 
 <nav class="top-nav">
   <div class="logo">📚 <b>WEBTECH LIBRARY - ADMIN PANEL</b></div>
@@ -30,7 +30,7 @@ $email = $_SESSION["email"];
   </div>
 </nav>
 
-<!-- DASHBOARD CONTENT -->
+
 
 <div style="padding:40px">
 
@@ -59,10 +59,13 @@ $email = $_SESSION["email"];
     <p>View available books</p>
   </div>
 
-  <div class="admin-card">
+  <a href="approve.php" class="admin-card">
     <h3>✅ Admin Approval</h3>
     <p>Approve pending admins</p>
-  </div>
+  </a>
+
+
+</div>
 
 </div>
 

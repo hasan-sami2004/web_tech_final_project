@@ -33,13 +33,18 @@ unset($_SESSION["loginErr"]);
 
     <form action="../controller/handleLoginValidation.php" method="post">
 
-      <input type="text" name="email" placeholder="Email" required>
+  <input type="text" name="email" placeholder="Email" required>
 
-      <input type="password" name="password" placeholder="Password" required>
+  <input type="password" name="password" placeholder="Password" required>
 
-      <button type="submit">Login</button>
+  <button type="submit">Login</button>
 
-    </form>
+</form>
+
+<p class="signup-text">
+  Don't have an account?
+  <a href="signup.php">Sign up</a>
+</p>
 
   </div>
 

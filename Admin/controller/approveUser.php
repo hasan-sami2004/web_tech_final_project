@@ -1,27 +1,17 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["isLoggedIn"]) || !isset($_SESSION["role"]) || $_SESSION["role"] !== "Admin") {
-    header("Location: ../view/login.php");
-    exit;
-}
+if ($_SESSION["role"] !== "Admin") exit;
 
 require_once '../../common/model/DatabaseConnection.php';
 
-$id = $_GET["id"] ?? 0;
-
-if (!$id) {
-    header("Location: ../view/approve.php");
-    exit;
-}
+$id = $_GET["id"];
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
 
-$stmt = $conn->prepare(
-    "UPDATE user SET approval_status = 1 WHERE user_id = ?"
-);
-$stmt->bind_param("i", $id);
+$stmt = $conn->prepare("UPDATE user SET approval_status=1 WHERE user_id=?");
+$stmt->bind_param("i",$id);
 $stmt->execute();
 
 header("Location: ../view/approve.php");

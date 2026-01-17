@@ -81,3 +81,26 @@ body {
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0,0,0,.1);
 }
+/* ===== GLOBAL DOT BACKGROUND ===== */
+
+.page-bg {
+  min-height: 100vh;
+  background-image: radial-gradient(#ddd 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+/* Admin Dashboard Hover Effect */
+
+.admin-card {
+  text-decoration: none;
+  color: black;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.admin-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 10px 18px rgba(0,0,0,0.15);
+  border: 1px solid #5bc0d4;
+  background: #f9fcff;
+  cursor: pointer;
+}
