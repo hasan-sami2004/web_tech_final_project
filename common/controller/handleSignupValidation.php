@@ -4,6 +4,8 @@ session_start();
 require_once '../../common/model/DatabaseConnection.php';
 
 $email = $_POST["email"] ?? "";
+
+
 $password = $_POST["password"] ?? "";
 $role = $_POST["role"] ?? "Reader";
 

@@ -43,7 +43,6 @@ $result = $conn->query("SELECT * FROM user");
 <tr>
   <th>ID</th>
   <th>Email</th>
-  <th>Password (HASH)</th>
   <th>Role</th>
   <th>Status</th>
   <th>Action</th>
@@ -55,7 +54,6 @@ $result = $conn->query("SELECT * FROM user");
 
 <td><?php echo $row['user_id']; ?></td>
 <td><?php echo $row['user']; ?></td>
-<td><?php echo substr($row['password'],0,25)."...."; ?></td>
 <td><?php echo $row['role']; ?></td>
 
 <td>
