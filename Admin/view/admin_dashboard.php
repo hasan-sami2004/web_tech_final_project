@@ -43,10 +43,11 @@ $email = $_SESSION["email"];
     <p>Search books from database</p>
   </div>
 
-  <div class="admin-card">
-    <h3>➕ Insert Book</h3>
-    <p>Add new books</p>
-  </div>
+  <a href="../../common/view/book_insertion.php" class="admin-card">
+  <h3>➕ Insert Book</h3>
+  <p>Add new books</p>
+  </a>
+
 
   <a href="user_list.php" class="admin-card">
     <h3>👥 View Users</h3>
