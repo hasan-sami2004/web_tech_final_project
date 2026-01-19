@@ -45,7 +45,7 @@ $sellerId = $_SESSION["seller_id"] ?? "";
     <p>Update price and quantity</p>
   </a>
 
-  <a href="book_list.php" class="admin-card">
+  <a href="../../common/view/book_list.php" class="admin-card">
     <h3>📚 Book List</h3>
     <p>View all available books</p>
   </a>
