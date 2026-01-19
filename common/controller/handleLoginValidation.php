@@ -66,6 +66,11 @@ if ($row["role"] == "Admin") {
     header("Location: ../../Admin/view/admin_dashboard.php");
     exit;
 }
+if ($row["role"] == "Seller") {
+    $_SESSION["seller_id"] = $row["user_id"];
+    header("Location: ../../Seller/view/seller_dashboard.php");
+    exit;
+}
 
 if ($row["role"] == "Reader") {
     $_SESSION["reader_id"] = $row["id"];
