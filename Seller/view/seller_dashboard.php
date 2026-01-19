@@ -35,7 +35,7 @@ $sellerId = $_SESSION["seller_id"] ?? "";
 
 <div class="admin-grid">
 
-  <a href="insert_book.php" class="admin-card">
+  <a href="../../common/view/book_insertion.php" class="admin-card">
     <h3>➕ Insert Book</h3>
     <p>Add new books to store</p>
   </a>
