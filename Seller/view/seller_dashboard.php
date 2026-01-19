@@ -50,7 +50,7 @@ $sellerId = $_SESSION["seller_id"] ?? "";
     <p>View all available books</p>
   </a>
 
-  <a href="search_book.php" class="admin-card">
+  <a href="../../common/view/search_book.php" class="admin-card">
     <h3>🔍 Search Book</h3>
     <p>Find books quickly</p>
   </a>
