@@ -27,12 +27,12 @@ if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["role"] !== "Seller") {
 
 <div class="admin-card">
   <h3>Total Books Sold</h3>
-  <p><b>120</b></p>
+  <p><b>0</b></p>
 </div>
 
 <div class="admin-card">
   <h3>Total Earnings</h3>
-  <p><b>৳ 60,000</b></p>
+  <p><b>৳ 0.00</b></p>
 </div>
 
 </div>
@@ -45,11 +45,6 @@ if (!isset($_SESSION["isLoggedIn"]) || $_SESSION["role"] !== "Seller") {
   <th>Book Name</th>
   <th>Quantity</th>
   <th>Total Price</th>
-</tr>
-<tr>
-  <td>Sample Book</td>
-  <td>2</td>
-  <td>1000</td>
 </tr>
 </table>
 </div>
