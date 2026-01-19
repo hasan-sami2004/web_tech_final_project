@@ -1,20 +1,19 @@
 <?php
 require_once "../../common/model/DatabaseConnection.php";
 
-$fee = "";
-$perDayFine = 10; 
+$msg = "";
 
-if (isset($_POST['check'])) {
+if (isset($_POST['borrow'])) {
 
     $book_id = $_POST['book_id'];
 
     $db = new DatabaseConnection();
     $conn = $db->openConnection();
 
-   
+    
 
-    $sql = "SELECT borrow_date FROM borrowed_books WHERE book_id = ?";
-    $stmt = $conn->prepare($sql);
+    $checkSql = "SELECT quantity FROM books WHERE id = ?";
+    $stmt = $conn->prepare($checkSql);
     $stmt->bind_param("i", $book_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -22,20 +21,24 @@ if (isset($_POST['check'])) {
     if ($result->num_rows == 1) {
 
         $row = $result->fetch_assoc();
-        $borrowDate = new DateTime($row['borrow_date']);
-        $today = new DateTime();
 
-        $days = $borrowDate->diff($today)->days;
+        if ($row['quantity'] > 0) {
 
-        if ($days > 7) { 
-            $lateDays = $days - 7;
-            $fee = "Late Fee: " . ($lateDays * $perDayFine) . " Tk";
+            
+
+            $updateSql = "UPDATE books SET quantity = quantity - 1 WHERE id = ?";
+            $updateStmt = $conn->prepare($updateSql);
+            $updateStmt->bind_param("i", $book_id);
+            $updateStmt->execute();
+
+            $msg = "✅ Book Borrowed Successfully";
+
         } else {
-            $fee = "✅ No Late Fee";
+            $msg = "❌ Book Out Of Stock";
         }
 
     } else {
-        $fee = "❌ Book not found in borrowed list";
+        $msg = "❌ Invalid Book ID";
     }
 }
 ?>
@@ -44,9 +47,9 @@ if (isset($_POST['check'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Late Fee</title>
+  <title>Borrow Book</title>
 
- 
+  
   <link rel="stylesheet" href="../../common/style.css">
 </head>
 
@@ -60,16 +63,17 @@ if (isset($_POST['check'])) {
 </div>
 
 
+
 <div class="page-bg">
 
   <div style="padding:40px">
 
-    <h2>Late Fee</h2>
-    <p>Check fine for late return</p>
+    <h2>Borrow Book</h2>
+    <p>Enter Book ID to borrow</p>
 
-   
-    <?php if($fee): ?>
-      <p><b><?php echo $fee; ?></b></p>
+    
+    <?php if($msg != ""): ?>
+      <p><b><?php echo $msg; ?></b></p>
     <?php endif; ?>
 
     
@@ -79,8 +83,8 @@ if (isset($_POST['check'])) {
 
         <input type="number" name="book_id" placeholder="Enter Book ID" required>
 
-        <button type="submit" name="check">
-          Check Fee
+        <button type="submit" name="borrow">
+          Borrow Book
         </button>
 
       </form>
