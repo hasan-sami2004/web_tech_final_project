@@ -38,6 +38,12 @@ $result = $conn->query("SELECT * FROM user");
 
 <h2>All Users</h2>
 
+<!-- SEARCH BOX -->
+<input type="text" id="searchBox" placeholder="Search user by email..." autocomplete="off">
+<div id="resultBox"></div>
+
+<br><br>
+
 <table border="1" cellpadding="10" cellspacing="0">
 
 <tr>
@@ -88,6 +94,37 @@ onclick="return confirm('Disable this user?')">
 </div>
 
 </div>
+
+<!-- AJAX SCRIPT MUST BE AFTER HTML -->
+<script>
+
+document.getElementById("searchBox").addEventListener("keyup", function () {
+
+    let query = this.value;
+
+    if(query.length === 0){
+        document.getElementById("resultBox").innerHTML = "";
+        return;
+    }
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("GET",
+      "/web_tech_final_project/Admin/controller/searchUserAjax.php?query=" + query,
+      true
+    );
+
+    xhr.onload = function () {
+        if (this.status === 200) {
+            document.getElementById("resultBox").innerHTML = this.responseText;
+        }
+    };
+
+    xhr.send();
+
+});
+
+</script>
 
 </body>
 </html>

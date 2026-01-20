@@ -5,7 +5,7 @@ require_once '../../common/model/DatabaseConnection.php';
 
 $search = $_GET["query"] ?? "";
 
-if ($search == "") {
+if($search==""){
     exit;
 }
 
@@ -13,18 +13,15 @@ $db = new DatabaseConnection();
 $conn = $db->openConnection();
 
 $stmt = $conn->prepare(
- "SELECT user FROM user WHERE user LIKE CONCAT('%', ?, '%') LIMIT 5"
+ "SELECT user FROM user WHERE user LIKE ? LIMIT 10"
 );
 
-$stmt->bind_param("s", $search);
+$param = "%".$search."%";
+
+$stmt->bind_param("s",$param);
 $stmt->execute();
 
 $result = $stmt->get_result();
-
-if ($result->num_rows == 0) {
-    echo "<div>No result</div>";
-    exit;
-}
 
 while($row = $result->fetch_assoc()){
     echo "<div>".$row['user']."</div>";
