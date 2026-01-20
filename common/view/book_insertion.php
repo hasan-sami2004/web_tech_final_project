@@ -43,7 +43,7 @@ if (
 
 <h2>Add New Book</h2>
 
-<form method="POST" action="../controller/insertBookController.php">
+<form method="POST" action="/web_tech_final_project/common/controller/book_insertion.php">
 
   <input type="text" name="title" placeholder="Book Title" required>
 
