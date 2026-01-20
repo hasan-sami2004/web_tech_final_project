@@ -4,15 +4,7 @@ require_once "../../common/model/DatabaseConnection.php";
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
 
-/*
-Assumed Table:
-borrowed_books
------------------
-id
-book_id
-book_title
-borrow_date
-*/
+
 
 $sql = "SELECT * FROM borrowed_books ORDER BY borrow_date DESC";
 $result = $conn->query($sql);
@@ -24,20 +16,20 @@ $result = $conn->query($sql);
   <meta charset="UTF-8">
   <title>Borrowed Books</title>
 
-  <!-- Global Style -->
+  
   <link rel="stylesheet" href="../../common/style.css">
 </head>
 
 <body>
 
-<!-- ===== NAVBAR ===== -->
+
 <div class="top-nav">
   <div class="logo">
     📚 <b>WEBTECH LIBRARY</b>
   </div>
 </div>
 
-<!-- ===== PAGE BG ===== -->
+
 <div class="page-bg">
   <div style="padding:40px">
 
