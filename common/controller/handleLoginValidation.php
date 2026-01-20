@@ -59,6 +59,8 @@ if ($row["role"] == "Admin" && $row["approval_status"] == 0) {
 $_SESSION["isLoggedIn"] = true;
 $_SESSION["email"] = $row["user"];
 $_SESSION["role"] = $row["role"];
+$_SESSION["reader_id"] = $row["id"];
+
 
 if ($row["role"] == "Admin") {
     header("Location: ../../Admin/view/admin_dashboard.php");
@@ -69,6 +71,13 @@ if ($row["role"] == "Seller") {
     header("Location: ../../Seller/view/seller_dashboard.php");
     exit;
 }
+
+if ($row["role"] == "Reader") {
+    $_SESSION["reader_id"] = $row["id"];
+    header("Location: ../../Reader/view/readerdashboard.php");
+    exit;
+}
+
 
 header("Location: ../view/dashboard.php");
 exit;
